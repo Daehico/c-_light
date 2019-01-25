@@ -19,12 +19,13 @@ namespace Task_6
                 int trys = 3 - (_try + 1);
                 Console.Write("Введите ваш ответ ");
                 answer = Console.ReadLine();
-                if (answer == "троллейбус.")
+                
+                if (answer.ToLower() == "троллейбус")
                 {
                     Console.WriteLine("И это правильный ответ!");
                     break;
                 }
-                else if (answer == "Сдаюсь")
+                else if (answer.ToLower() == "сдаюсь")
                 {
                     Console.WriteLine("Фуфуфу сдаваться. Правильный ответ троллейбус.");
                     break;
