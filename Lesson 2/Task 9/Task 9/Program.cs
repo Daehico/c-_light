@@ -17,31 +17,41 @@ namespace Task_9
             if (userYersOld < 18)
             {
                 Console.WriteLine("Извини, но тебе закрыт доступ к программе");
-            }
+                        }
             else
             {
                 Console.Write("Замечательно. Ты ходишь в школу?");
                 string userGoToSchool = Console.ReadLine();
-                if (userGoToSchool == "да")
+                if (userGoToSchool.ToLower() == "да")
                 {
                     Console.WriteLine("Обманщик,тебе нет 18!");
                 }
-                else
+                else if (userGoToSchool.ToLower() == "нет")
                 {
-                    Console.Write("Cентябрь гориииит... /r/n 1) Убийца плачет /r/n/ 2) Птица парит /r/n 3) Что это вообще такое?");
+                    Console.Write("Cентябрь гориииит... \r\n 1) Убийца плачет \r\n 2) Птица парит \r\n 3) Что это вообще такое?");
                     string stigmata = Console.ReadLine();
-                    if (stigmata == "1" && stigmata == "2")
+                    if (stigmata == "3" || stigmata == "2")
                     {
                         Console.WriteLine("Обманщик!");
 
                     }
-                    else if (stigmata == "3")
+                    else if (stigmata == "1")
                     {
                         Console.WriteLine("Блеск! Ты прошел мой тест");
                     }
+                    else
+                    {
+                        Console.WriteLine("Введенно значение не корректно");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Введенно значение не корректно");
 
                 }
+               
             }
+            Console.ReadKey();
         }
     }
 }
