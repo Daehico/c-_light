@@ -22,7 +22,7 @@ namespace Task_7
                 "Для ознакомления со списком заклинаний наберите команду Список команд. Учтите, что за \r\nкаждое использованное заклинание вы будите получать урон. " +
                 "Игра закончится, когда кто нибудь умрет.\r\nНадеюсь это будет босс ;) Удачи! ");
 
-            while (userHealth > 0 || bossHealth > 0)
+            while (userHealth > 0 && bossHealth > 0)
             {
                 Console.Write("Введите команду:");
                 command = Console.ReadLine();
@@ -86,35 +86,17 @@ namespace Task_7
                 {
                     Console.WriteLine("Заклинание не опознано. Попробуйте еще раз");
                 }
-                // Тут идет костыль, потому что выход из цикла при минусовом здоровье в цикле While У меня не робит. И я хз как это поправить. 
-                if (bossHealth < 0)
-                {
-                    break;
-                }
-                if (userHealth < 0)
-                {
-                    break;
-                }
+                
             }
 
-            bool userWin;
-
-            if (userHealth < 0)
+            if (userHealth <= 0)
             {
-                userWin = false;
-            }
-            else
-            {
-                userWin = true;
-            }
-            if (userWin == false) {
                 Console.WriteLine("Вы погибли!");
             }
             else
             {
-                Console.WriteLine("Босс убит! Вы победили, поздравляю!");
+                Console.WriteLine("Вы победили! Поздравляю!");
             }
-
             Console.WriteLine("Спасибо, что поиграли в эту игру! Для выхода нажмите любую клавишу");
             Console.ReadKey();
         }
