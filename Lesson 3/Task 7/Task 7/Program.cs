@@ -12,11 +12,13 @@ namespace Task_7
         {
             string command = "";
             int i = 0;
-            int[] array1 = new int[1];
-            int[] array2 = new int[1];
+            int j = 1;
+            int[] array1 = new int[j];
+            int[] array2 = new int[j];
+            
 
-            int _int = 0;
-           
+            int _int;
+            Console.WriteLine("Данная программа посчитает сумму введенных вами чисел. \n\rВводите числа,а для того что бы посчитать их сумму введите коману sum");
             while (command.ToLower() != "sum")
             {
                 Console.Write("Введите число:");
@@ -26,31 +28,48 @@ namespace Task_7
                 {
                    if (i == 0)
                     {
-                        
+                       
                         array1[i] = _int;
-                        i++;
-                        array2 = new int[i];
+                     
+                        
 
                     }
                     else
                     {
-                       
-                        array2[i-1] = array1[i-1];
-                        array1 = new int[i+1];
-                        for (int j = 0; j < array2.Length; j++ ){
-                            array1[j] = array2[j];
-                        }
-                        array1[i+1] = _int;
-                        i++;
-                        array2 = new int[i];
+                        array2 = new int[j++];
+                        Array.Copy(array1,array2, j-1);
+                        array1 = new int[j];
+                        Array.Copy(array2, array1 = new int[j], j-1);
+
+                        array1[i] = _int;
+                        
+                        
                     }
                 }
                 else
                 {
                     Console.WriteLine("Вы ввели не число");
                 }
+                i++;
+            }
+            int sum = 0;
+            if (array1.Length > array2.Length)
+            {
+                for (int e = 0; e < array1.Length; e++)
+                {
+                    sum += array1[e];
+                }
+            }
+            else
+            {
+                for (int e = 0; e < array2.Length; e++)
+                {
+                    sum += array2[e];
+                }
                 
             }
+            Console.WriteLine(sum);
+            Console.ReadKey();
         }
     }
 }
