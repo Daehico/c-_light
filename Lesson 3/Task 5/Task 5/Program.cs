@@ -11,23 +11,23 @@ namespace Task_5
         static void Main(string[] args)
         {
             int[] array = new int[30];
-            Console.WriteLine("Список локальных максимумов: ");
+            Random rand = new Random();
             for (int i = 0; i < array.Length; i++)
             {
-                
-                Random rand = new Random();
-                array[i] = rand.Next(0, 1000);
+                array[i] = rand.Next(0, 50);
+                Console.WriteLine(array[i]);
+            }
+            Console.WriteLine("Список локальных максимумов: ");
+            for (int i = 0; i < array.Length; i++) {
                 if (i == 29 || i <= 0)
                 { }
                 else
                 {
                     if (array[i] > array[i - 1] && array[i] > array[i + 1])
                     {
-                        Console.WriteLine(array[i] + ',');
+                        Console.WriteLine(array[i]);
                     }
                 }
-                //array[i] = array [i];
-                //Console.WriteLine(array[i]);
             }
             Console.ReadKey();
         }
