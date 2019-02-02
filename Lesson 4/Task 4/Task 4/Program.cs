@@ -31,10 +31,12 @@ namespace Task_4
                 "\r\nНажмите любую клавишу что бы начать.");
             Console.ReadKey();
             Console.Clear();
-            while (health != 0)
+            while (health != 0 && bag.Length !=4)
             {
                 Console.SetCursorPosition(15, 0);
                 Console.Write("Сумка:");
+                Bag(bag);
+                
                 Console.SetCursorPosition(15, 1);
                 Console.WriteLine("Здоровье:" + health);
 
@@ -72,6 +74,10 @@ namespace Task_4
                 if (map[X, Y] == 'X')
                 {
                     Money(map, X, Y,bag);
+
+                  
+                   
+                    
                 }
 
                 if (map[X, Y] == '#')
@@ -93,14 +99,7 @@ namespace Task_4
                 Console.Clear();
             }
             Console.Clear();
-            if (health <= 0)
-            {
-                Console.WriteLine("Вы погибли!");
-            }
-            else
-            {
-                Console.WriteLine("Вы молодцы, вы собрали все монеты!");
-            }
+            WinOrLose(bag, health);
             Console.WriteLine("Спасибо за игру. Нажмите любую клавишу, что бы выйти");
             Console.ReadKey();
         }
@@ -171,6 +170,26 @@ namespace Task_4
                 Console.Write(bag[i] + " | ");
             return bag;
         }
+
+        static void Bag(char[] bag)
+        {
+           
+            for (int i = 0; i < bag.Length; i++)
+            {
+                Console.Write(bag[i]);
+            }
+        }
+
+        static void WinOrLose(char[] bag, int health)
+        {
+            if (health <= 0)
+            {
+                Console.WriteLine("Вы погибли!");
+            }
+            if (bag.Length == 4)
+                Console.WriteLine("Вы молодцы! Вы собрали все монеты");
+        }
+
     }
 
    
