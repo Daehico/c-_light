@@ -10,46 +10,35 @@ namespace Task_6
     {
         static void Main(string[] args)
         {
+            string[] array = new string[1];
+            string[] arrayCopy;
+            string text;
+            int id;
             while (true)
             {
                 Console.Write("Введите команду: ");
-                string[] array = new string[1];
-                string[] arrayCopy;
-                string text;
-                int id;
                 string comand = Console.ReadLine();
-                if (comand.ToLower() == "удалить")
-                {
-                    Console.Write("Введите индекс массива который вы хотите удалить:");
-                    id = Convert.ToInt32(Console.ReadLine());
-                    if (id <= array.Length - 1)
-                        Delete(array, id);
-                    else
-                        Console.WriteLine("Вы ввели не корректное число");
-                    for (int i = 0; i < array.Length; i++)
-                    {
-                        if (array[i] == null)
-                            continue;
-                        Console.WriteLine(array[i]);
-                    }
-                }
-               else  if (comand.ToLower() == "добавить")
+                if (comand.ToLower() == "добавить")
                 {
                     Console.Write("Введите текст, который хотите добавить в масив: ");
                     text = Console.ReadLine();
                     array = Add(array, text);
-                    for (int i = 0; i < array.Length; i++)
-                    {
-                        Console.WriteLine(array[i]);
-                    }
+                   
                 }
-                else if (comand.ToLower() == "копировать") 
+                else if (comand.ToLower() == "удалить")
                 {
-                   arrayCopy =  ArrayCopy(array);
-                    for (int i = 0; i < arrayCopy.Length; i++)
-                    {
-                        Console.WriteLine(arrayCopy[i]);
-                    }
+                    Console.Write("Введите индекс массива который вы хотите удалить:");
+                    id = Convert.ToInt32(Console.ReadLine());
+                    if (id <= array.Length - 1)
+                        array = Delete(array, id);
+                    else
+                        Console.WriteLine("Вы ввели не корректное число");
+                }               
+
+                else if (comand.ToLower() == "копировать")
+                {
+                    arrayCopy = ArrayCopy(array);
+                   
                 }
                 else
                 {
@@ -61,16 +50,22 @@ namespace Task_6
 
         static string[] Delete (string[] array, int id)
         {
-            array[id] = null;
+            array[id] = null; // при выводе массива в цикле прописать что эллементы массива имеющие значение null не выводятся
             return array;
             
         }
         static string[] Add (string[] array, string text )
         {
-
-            string[] arrayCopy = ArrayCopy(array);
+            string[] arrayCopy = new string[array.Length];
+            for (int i = 0; i < array.Length; i++)
+            {
+                arrayCopy[i] = array[i];
+            }
             array = new string[arrayCopy.Length + 1];
-            array = ArrayCopy(arrayCopy);
+            for (int i = 0; i < arrayCopy.Length; i++)
+            {
+                array[i] = arrayCopy[i];
+            }
             array[array.Length - 1] = text;
             return array;
 
