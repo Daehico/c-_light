@@ -24,16 +24,24 @@ namespace Task_1
                    fioArray = AdddossierName(fioArray);
                    positionArray = AddDossierPosition(positionArray);  
                 }
-                if (comand.ToLower() == "вывести все досье")
+                else if (comand.ToLower() == "вывести все досье")
                 {
                     SeeAllDossier(fioArray, positionArray);
                 }
-                if (comand.ToLower() == "удалить досье")
+               else if (comand.ToLower() == "удалить досье")
                 {
                     Console.Write("Введите ID сотрудника досье которого вы хотите удалить. Для того что бы узнать ID сотруддника ввыведите список сотрудников через команду вывести все досье: ");
                     int id = Convert.ToInt32(Console.ReadLine());
                     fioArray = DeleteDossierName(fioArray,id);
                     positionArray = DeleteDossierPosition(fioArray, id);
+                }
+                else if(comand.ToLower() == "поиск")
+                {
+                    Search(fioArray,positionArray);
+                }
+                else
+                {
+                    Console.WriteLine("Данной команы не существует");
                 }
                 Console.Write("Введите команду: ");
                 comand = Console.ReadLine();
@@ -50,7 +58,7 @@ namespace Task_1
             string[] fioArrayCopy;
             
 
-            Console.Write("Введите имя: ");
+            Console.Write("Введите ФИО: ");
             name = Console.ReadLine();   
            
             
@@ -106,7 +114,20 @@ namespace Task_1
             Array.Clear(positionArray, id, id);
             return positionArray;
         }
+        static void Search (string[] array,string[] position)
+        {
+            Console.Write("Введите ФИО сотрудника:");
+            string text = Console.ReadLine();
+            for (int i = 0; i < array.Length; i++)
+            {
+                if(array[i] == text)
+                {
+                    Console.WriteLine("{0} - ID сотрудника которого вы искали; {1} - должность сотрудника которого вы искали", i, position[i]);
+                }
 
+            }
+            
+        }
     }
     
 }
