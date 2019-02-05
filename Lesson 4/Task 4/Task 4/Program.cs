@@ -35,54 +35,32 @@ namespace Task_4
             {
                 Console.SetCursorPosition(15, 0);
                 Console.Write("Сумка:");
-                Bag(bag);
+              bag =  Bag(bag);
                 
                 Console.SetCursorPosition(15, 1);
                 Console.WriteLine("Здоровье:" + health);
 
-               
-
                 Console.SetCursorPosition(0, 0);
-
 
                 Render(map);
 
                 Console.SetCursorPosition(Y, X);
                 Console.Write('Y');
 
-
                 ConsoleKeyInfo charKey = Console.ReadKey();
-               
-                switch (charKey.Key)
-                {
-                    case ConsoleKey.UpArrow:
-                        X--;
-                        break;
-                    case ConsoleKey.DownArrow:
-                        X++;
-                        break;
-                    case ConsoleKey.LeftArrow:
-                        Y--;
-                        break;
-                    case ConsoleKey.RightArrow:
-                        Y++;
-                        break;
-                }
 
-
+                X = MoveUpDown(X,charKey);
+                Y = MoveLeftRight(Y,charKey);
 
                 if (map[X, Y] == 'X')
                 {
-                    Money(map, X, Y,bag);
-
-                  
-                   
-                    
+                   bag = Money(map, X, Y,bag);
                 }
 
                 if (map[X, Y] == '#')
                 {
-                    Wall(X, Y);
+                  X =  WallX(X, Y);
+                    Y = WallY(X, Y);
                 }
 
                 if (map[X, Y] == '+')
@@ -116,9 +94,8 @@ namespace Task_4
             }
         }
 
-        static void Move(int X, int Y)
+        static int MoveUpDown(int X, ConsoleKeyInfo charKey)
         {
-            ConsoleKeyInfo charKey = Console.ReadKey();
             switch (charKey.Key)
             {
                 case ConsoleKey.UpArrow:
@@ -127,6 +104,15 @@ namespace Task_4
                 case ConsoleKey.DownArrow:
                     X++;
                     break;
+                
+            }
+            return X;
+        }
+
+        static int MoveLeftRight(int Y, ConsoleKeyInfo charKey)
+        { 
+            switch (charKey.Key)
+            {
                 case ConsoleKey.LeftArrow:
                     Y--;
                     break;
@@ -134,26 +120,34 @@ namespace Task_4
                     Y++;
                     break;
             }
+            return Y;
         }
 
-        static void Wall(int  X, int Y)
+        static int WallX(int  X,int Y)
         {
             if (X == 0 && Y > 0 && Y <= 14)
             {
                 X++;
             }
-            if (Y == 11 && X > 0 && X <= 6)
-            {
-                Y--;
-            }
+           
             if (X == 6 && Y > 0 && Y <= 14)
             {
                 X--;
+            }
+            return X;
+            
+        }
+        static int WallY(int X, int Y)
+        {
+            if (Y == 11 && X > 0 && X <= 6)
+            {
+                Y--;
             }
             if (Y == 0 && X > 0 && X <= 6)
             {
                 Y++;
             }
+            return Y;
         }
 
         static char[] Money (char[,] map, int X,int Y, char[] bag)
@@ -171,13 +165,14 @@ namespace Task_4
             return bag;
         }
 
-        static void Bag(char[] bag)
+        static char[] Bag(char[] bag)
         {
            
             for (int i = 0; i < bag.Length; i++)
             {
                 Console.Write(bag[i]);
             }
+            return bag;
         }
 
         static void WinOrLose(char[] bag, int health)
