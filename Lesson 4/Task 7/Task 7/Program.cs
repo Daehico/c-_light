@@ -31,29 +31,9 @@ namespace Task_7
 
                 for (int j = 0; j < randomArray.Length; j++)
                 {
-                    randomArray[j] = copy[j];
+                    
+                        randomArray[j] = copy[j];
 
-                }
-                randomArray[randomArray.Length - 1] = random;
-                
-                while(true)
-                {
-                    for (int e = 0; e < randomArray.Length; e++)
-                    {
-                        if (randomArray[e] == random)
-                        {
-                            random = rand.Next(0, array.Length);
-                        }
-
-                        else
-                        {
-                            if(e == randomArray.Length - 1)
-                            {
-                                break;
-                            }
-                        }
-                            
-                    }
                 }
 
             }
